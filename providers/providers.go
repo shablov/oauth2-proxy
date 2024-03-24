@@ -65,6 +65,8 @@ func NewProvider(providerConfig options.Provider) (Provider, error) {
 		return NewNextcloudProvider(providerData), nil
 	case options.OIDCProvider:
 		return NewOIDCProvider(providerData, providerConfig.OIDCConfig), nil
+	case options.YandexProvider:
+		return NewYandexProvider(providerData, providerConfig.YandexConfig), nil
 	default:
 		return nil, fmt.Errorf("unknown provider type %q", providerConfig.Type)
 	}
@@ -179,7 +181,8 @@ func parseCodeChallengeMethod(providerConfig options.Provider) string {
 func providerRequiresOIDCProviderVerifier(providerType options.ProviderType) (bool, error) {
 	switch providerType {
 	case options.BitbucketProvider, options.DigitalOceanProvider, options.FacebookProvider, options.GitHubProvider,
-		options.GoogleProvider, options.KeycloakProvider, options.LinkedInProvider, options.LoginGovProvider, options.NextCloudProvider:
+		options.GoogleProvider, options.KeycloakProvider, options.LinkedInProvider, options.LoginGovProvider,
+		options.NextCloudProvider, options.YandexProvider:
 		return false, nil
 	case options.ADFSProvider, options.AzureProvider, options.GitLabProvider, options.KeycloakOIDCProvider, options.OIDCProvider:
 		return true, nil

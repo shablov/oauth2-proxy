@@ -45,6 +45,8 @@ type Provider struct {
 	OIDCConfig OIDCOptions `json:"oidcConfig,omitempty"`
 	// LoginGovConfig holds all configurations for LoginGov provider.
 	LoginGovConfig LoginGovOptions `json:"loginGovConfig,omitempty"`
+	// YandexConfig holds all configurations for Yandex provider.
+	YandexConfig YandexOptions `json:"yandexConfig,omitempty"`
 
 	// ID should be a unique identifier for the provider.
 	// This value is required for all providers.
@@ -136,6 +138,9 @@ const (
 
 	// OIDCProvider is the provider type for OIDC
 	OIDCProvider ProviderType = "oidc"
+
+	// YandexProvider is the provider type for Yandex
+	YandexProvider ProviderType = "yandex"
 )
 
 type KeycloakOptions struct {
@@ -201,6 +206,9 @@ type GoogleOptions struct {
 	UseApplicationDefaultCredentials bool `json:"useApplicationDefaultCredentials,omitempty"`
 	// TargetPrincipal is the Google Service Account used for Application Default Credentials
 	TargetPrincipal string `json:"targetPrincipal,omitempty"`
+}
+
+type YandexOptions struct {
 }
 
 type OIDCOptions struct {

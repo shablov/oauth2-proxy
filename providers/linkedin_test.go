@@ -36,7 +36,7 @@ func testLinkedInBackend(payload string) *httptest.Server {
 		func(w http.ResponseWriter, r *http.Request) {
 			if r.URL.Path != path {
 				w.WriteHeader(404)
-			} else if !IsAuthorizedInHeader(r.Header) {
+			} else if !IsAuthorizedBearerInHeader(r.Header) {
 				w.WriteHeader(403)
 			} else {
 				w.WriteHeader(200)

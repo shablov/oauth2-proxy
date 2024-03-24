@@ -174,7 +174,7 @@ func testAzureBackendWithError(payload string, accessToken, refreshToken string,
 					w.WriteHeader(200)
 				}
 				w.Write([]byte(payload))
-			} else if !IsAuthorizedInHeaderWithToken(r.Header, accessToken) &&
+			} else if !IsAuthorizedBearerInHeaderWithToken(r.Header, accessToken) &&
 				!isAuthorizedRefreshInURLWithToken(r.URL, refreshToken) {
 				w.WriteHeader(403)
 			} else {

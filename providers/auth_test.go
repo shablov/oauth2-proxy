@@ -14,12 +14,20 @@ func CreateAuthorizedSession() *sessions.SessionState {
 	return &sessions.SessionState{AccessToken: authorizedAccessToken}
 }
 
-func IsAuthorizedInHeader(reqHeader http.Header) bool {
-	return IsAuthorizedInHeaderWithToken(reqHeader, authorizedAccessToken)
+func IsAuthorizedBearerInHeader(reqHeader http.Header) bool {
+	return IsAuthorizedBearerInHeaderWithToken(reqHeader, authorizedAccessToken)
 }
 
-func IsAuthorizedInHeaderWithToken(reqHeader http.Header, token string) bool {
+func IsAuthorizedBearerInHeaderWithToken(reqHeader http.Header, token string) bool {
 	return reqHeader.Get("Authorization") == fmt.Sprintf("Bearer %s", token)
+}
+
+func IsAuthorizedOAuthInHeader(reqHeader http.Header) bool {
+	return IsAuthorizedOAuthInHeaderWithToken(reqHeader, authorizedAccessToken)
+}
+
+func IsAuthorizedOAuthInHeaderWithToken(reqHeader http.Header, token string) bool {
+	return reqHeader.Get("Authorization") == fmt.Sprintf("OAuth %s", token)
 }
 
 func IsAuthorizedInURL(reqURL *url.URL) bool {
